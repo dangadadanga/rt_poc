@@ -1,0 +1,4 @@
+Notes from EssexTec presentation
+
+- quatify information we find on the applicant. Apply a formula to calculate probabilities and prioritize candidates for the recruiters to reach out to 
+- 
