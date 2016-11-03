@@ -1,14 +1,12 @@
-SETUP:
+SETUP: These notes are a bit messy but I do plan to clean them up ASAP
 
 1. Uses Gradle to load dependencies (check out build.gradle file)
-
 
 2. Loads in Bluemeix credentials from config.properties file, this file is not pushed but you can create a "config.properties" file in the top level directory of this project, Inside the config.properties file should have this structure
 
 dc_user=YOUR_DOCUMENT_CONVERSION_USER
 dc_pw=YOUR_DOCUMENT_CONVERSION_PASSWORD
 alchemy_key=YOUR_ALCHEMY_API_KEY
-
 
 Important note: make sure not to push this config.properties file as it contains sensitive information
 
@@ -19,7 +17,6 @@ Important note: make sure not to push this config.properties file as it contains
 - Cached results are indexed by university-name/graduation-year/data-format
 - You can clear the cache by  deleting the directory
 
-5. These notes are a bit messy but I do plan to clean them up ASAP
 
 USAGE:
 
