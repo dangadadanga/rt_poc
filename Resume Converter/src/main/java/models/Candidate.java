@@ -8,7 +8,6 @@ import java.util.ArrayList;
  *
  */
 
-import java.util.Arrays;
 
 /*
  * A representation of a student candidate
@@ -18,8 +17,9 @@ public class Candidate {
 	String name; 
 	String university; 
 	double GPA;
-	String[] leadership;
+	ArrayList<Role> roles;
 	String email;
+	
 
 	// TODO: include Ethnicity
 	String degree;
@@ -33,38 +33,40 @@ public class Candidate {
 		this.name = null;
 		this.university = null;
 		this.GPA = 0.0;
-		this.leadership = null;
+		this.roles = new ArrayList<Role>();
 		this.degree = null;
-		this.keywords = new ArrayList();
-		this.organizations = new ArrayList();
+		this.keywords = new ArrayList<String>();
+		this.organizations = new ArrayList<String>();
 		this.email = null;
 	}
-	public Candidate(String name, String university, double GPA, String[] leadership) {
+	public Candidate(String name, String university, double GPA, ArrayList<Role> roles) {
 		this.name = name;
 		this.university = university;
 		this.GPA = GPA;
-		this.leadership = leadership;
+		this.roles = roles;
 	}
 	
 	public void prettyPrint() {
-		System.out.println("Resume Path:" + this.resumeFilePath);
-		if(this.getName() != null) {
-			System.out.println(this.getName());
-		}
-		if(this.getEmail() != null) {
-			System.out.println(this.getEmail());
-		}
+		System.out.println("Extracted content for" + this.resumeFilePath);
+		System.out.println(this.toString());
+		this.printRoles();
 	}
 
 
 	@Override
 	public String toString() {
-		return "Candidate [name=" + name + ", university=" + university + ", GPA=" + GPA + ", leadership="
-				+ Arrays.toString(leadership) + ", email=" + email + ", degree=" + degree + ", keywords=" + keywords
-				+ ", organizations=" + organizations + ", resumeFilePath=" + resumeFilePath + "]";
+		return "\nname=" + name + ", \nuniversity=" + university + ", \nGPA=" + GPA
+				+ ", \nemail=" + email + ", \ndegree=" + degree + ", \nkeywords=" + keywords;
 	}
 	public String getName() {
 		return name;
+	}
+	
+	public ArrayList<Role> getRoles() {
+		return roles;
+	}
+	public void setRoles(ArrayList<Role> roles) {
+		this.roles = roles;
 	}
 	public void setName(String name) {
 		this.name = name;
@@ -81,12 +83,7 @@ public class Candidate {
 	public void setGPA(double gPA) {
 		GPA = gPA;
 	}
-	public String[] getLeadership() {
-		return leadership;
-	}
-	public void setLeadership(String[] leadership) {
-		this.leadership = leadership;
-	}
+
 	public String getEmail() {
 		return email;
 	}
@@ -103,7 +100,7 @@ public class Candidate {
 		return organizations;
 	}
 	public void setOrganizations(ArrayList<String> organizations) {
-		organizations = organizations;
+		this.organizations = organizations;
 	}
 	public String getResumeFilePath() {
 		return resumeFilePath;
@@ -118,6 +115,12 @@ public class Candidate {
 		this.degree = degree;
 	}
 	
+	public void printRoles() {
+		for(Role role: this.getRoles()) {
+			System.out.println("Organization: " + role.getOrganization() + ", Role: " +role.getRole());
+			
+		}
+	}
 	
 	
 	
