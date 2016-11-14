@@ -1,6 +1,11 @@
-package models;
+package org.teachforamerica.models;
 
+import static org.elasticsearch.common.xcontent.XContentFactory.jsonBuilder;
+
+import java.io.IOException;
 import java.util.ArrayList;
+
+import org.elasticsearch.common.xcontent.XContentBuilder;
 
 /**
  * 
@@ -12,7 +17,7 @@ import java.util.ArrayList;
 /*
  * A representation of a student candidate
  */
-public class Candidate {
+public class Prospect {
 	
 	String name; 
 	String university; 
@@ -28,7 +33,7 @@ public class Candidate {
 	String resumeFilePath;
 	
 	
-	public Candidate(String resumeFilePath) {
+	public Prospect(String resumeFilePath) {
 		this.resumeFilePath = resumeFilePath;
 		this.name = null;
 		this.university = null;
@@ -39,14 +44,14 @@ public class Candidate {
 		this.organizations = new ArrayList<String>();
 		this.email = null;
 	}
-	public Candidate(String name, String university, double GPA, ArrayList<Role> roles) {
+	public Prospect(String name, String university, double GPA, ArrayList<Role> roles) {
 		this.name = name;
 		this.university = university;
 		this.GPA = GPA;
 		this.roles = roles;
 	}
 	
-	public void prettyPrint() {
+	public void print() {
 		System.out.println("Extracted content for" + this.resumeFilePath);
 		System.out.println(this.toString());
 		this.printRoles();
@@ -58,6 +63,31 @@ public class Candidate {
 		return "\nname=" + name + ", \nuniversity=" + university + ", \nGPA=" + GPA
 				+ ", \nemail=" + email + ", \ndegree=" + degree + ", \nkeywords=" + keywords;
 	}
+	
+	public String toJSON() {
+			try {
+				
+				XContentBuilder builder = jsonBuilder()
+					    .startObject()
+					        .field("name", this.getName())
+					        .field("university", this.getUniversity())
+					        .field("gpa", this.getGPA())
+					        .field("email", this.getEmail())
+					        .field("resume-filepath", this.getResumeFilePath())
+						    .array("organizations", this.getOrganizations().toArray())
+					       
+					    .endObject();
+					return builder.string();
+				
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			return null;
+			
+		}
+		
+	
 	public String getName() {
 		return name;
 	}
@@ -117,7 +147,7 @@ public class Candidate {
 	
 	public void printRoles() {
 		for(Role role: this.getRoles()) {
-			System.out.println("Organization: " + role.getOrganization() + ", Role: " +role.getRole());
+			System.out.println("Organization: " + role.getOrganization() + ", Title: " +role.getRole());
 			
 		}
 	}

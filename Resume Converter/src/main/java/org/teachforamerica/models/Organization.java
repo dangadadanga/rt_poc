@@ -1,4 +1,4 @@
-package models;
+package org.teachforamerica.models;
 
 public class Organization {
 	

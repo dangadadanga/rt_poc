@@ -1,4 +1,4 @@
-package org.teachforamerica.resumeconverter;
+package org.teachforamerica.controllers;
 
 import java.io.FileInputStream; 
 import java.io.IOException;
@@ -59,7 +59,7 @@ public class BluemixConnection {
 
 		try {
 
-			input = new FileInputStream("config.properties");
+			input = new FileInputStream("credentials.properties");
 
 			// load a properties file
 			prop.load(input);

@@ -1,4 +1,4 @@
-package models;
+package org.teachforamerica.models;
 
 import java.util.ArrayList;
 

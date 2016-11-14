@@ -2,7 +2,9 @@ SETUP: These notes are a bit messy but I do plan to clean them up ASAP
 
 1. Uses Gradle to load dependencies (check out build.gradle file)
 
-2. Loads in Bluemeix credentials from config.properties file, this file is not pushed but you can create a "config.properties" file in the top level directory of this project, Inside the config.properties file should have this structure
+2 Uses Elastic Search 1.4 available here: https://www.elastic.co/downloads/past-releases
+
+3. Loads in Bluemeix credentials from credentials.properties file, this file is not pushed but you can create a "config.properties" file in the top level directory of this project, Inside the config.properties file should have this structure
 
 dc_user=YOUR_DOCUMENT_CONVERSION_USER
 
@@ -12,9 +14,20 @@ alchemy_key=YOUR_ALCHEMY_API_KEY
 
 Important note: make sure not to push this config.properties file as it contains sensitive information
 
-3. Main is located in src/main/java/App.java, make sure to put a filepath to a .pdf formated resume in the RESUME_FILEPATH variable at the beginning 
+4. The config.properties file is where you configure how the resume converter runs. It comes with the followng options:
+- resume_filepath: the filepath to the resume or resume book to be converted
+- document_conversion_number: the version number to use for document conversion
+- resume_book_mode: (true or false) whether or not you are converting a resume book
+- check_resume_book_cache: (true or false) checks if resume book has been previously split up into individual resumes, if it has then uses the previous results
+-resume_book_saving_directory: the path to save and check for a cached resume book
+-check_cache: (true or false) whether or not to check previously saved document conversion results
+-univeristy_name: the university name from which the resume originates (used for caching)
+-graduation_year: the graduation year for which the resume originates (used for caceing)
 
-4. Cached Results: in order to not make unnnecessary calls to bluemix, this program tries to save previous results in a cache.
+
+5. Main is located in src/main/java/App.java, make sure to put a filepath to a .pdf formated resume in the RESUME_FILEPATH variable at the beginning 
+
+6. Cached Results: in order to not make unnnecessary calls to bluemix, this program tries to save previous results in a cache.
 - The cache is stored in the resume-cache directory
 - Cached results are indexed by university-name/graduation-year/data-format
 - You can clear the cache by  deleting the directory

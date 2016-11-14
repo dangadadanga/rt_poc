@@ -1,8 +1,8 @@
-package models;
+package org.teachforamerica.models;
 
 public class Role {
 	
-	String role = null;
+	String title = null;
 	String organization = null;
 	String weight = null;
 	
@@ -12,15 +12,15 @@ public class Role {
 	}
 	public Role(String role, String organization, String weight) {
 		super();
-		this.role = role;
+		this.title = role;
 		this.organization = organization;
 		this.weight = weight;
 	}
 	public String getRole() {
-		return role;
+		return title;
 	}
 	public void setRole(String role) {
-		this.role = role;
+		this.title = role;
 	}
 	public String getOrganization() {
 		return organization;
